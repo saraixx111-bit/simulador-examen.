@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulador de Exámenes Institucional</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Tipografía moderna -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Encabezado -->
+  <header class="navbar">
+    <div class="logo-container">
+      <div class="logo-icon">📊</div>
+      <div>
+        <h1 class="logo-title">Simulador Académico</h1>
+        <p class="logo-subtitle">Colegio Pompeya</p>
+      </div>
+    </div>
+    <div class="stats-badge" id="stats-badge">
+      Exámenes completados: <strong id="completed-count">0</strong>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- Vista 1: Configuración del Examen -->
+    <section id="setup-card" class="card">
+      <h2 class="card-title">Configuración de la Evaluación</h2>
+      <p class="card-description">Selecciona la asignatura y la modalidad para comenzar el simulador.</p>
+
+      <form id="quiz-form">
+        <div class="form-group">
+          <label for="subject-select" class="form-label">Asignatura:</label>
+          <select id="subject-select" class="form-control">
+            <option value="informatica">Redes e Informática</option>
+            <option value="filosofia">Filosofía y Argumentación</option>
+            <option value="quimica">Química General</option>
+            <option value="matematicas">Matemáticas Aplicadas</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Modo de Evaluación:</label>
+          <div class="radio-group">
+            <label class="radio-card">
+              <input type="radio" name="mode" value="exam" checked>
+              <div>
+                <strong>Modo Examen Real</strong>
+                <p>Con temporizador de 10 minutos y resultado al final.</p>
+              </div>
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="mode" value="practice">
+              <div>
+                <strong>Modo Práctica / Repaso</strong>
+                <p>Sin límite de tiempo y con retroalimentación inmediata.</p>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">Comenzar Evaluación</button>
+      </form>
+    </section>
+
+    <!-- Vista 2: Preguntas del Examen (Oculta al inicio) -->
+    <section id="quiz-card" class="card hidden">
+      <div class="quiz-header">
+        <span class="badge" id="subject-badge">Informática</span>
+        <div class="timer-badge" id="timer-container">⏱️ Tiempo: <span id="time-left">10:00</span></div>
+      </div>
+
+      <div class="progress-bar-container">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+
+      <p class="question-step" id="question-number">Pregunta 1 de 4</p>
+      <h3 class="question-text" id="question-text">Cargando pregunta...</h3>
+
+      <div class="options-container" id="options-container">
+        <!-- Se genera dinámicamente con JS -->
+      </div>
+
+      <div id="feedback-container" class="feedback-box hidden">
+        <strong id="feedback-title">¡Correcto!</strong>
+        <p id="feedback-explanation">Explicación técnica pedagógica...</p>
+      </div>
+
+      <div class="quiz-footer">
+        <button id="next-btn" class="btn btn-primary" disabled>Siguiente Pregunta</button>
+      </div>
+    </section>
+
+    <!-- Vista 3: Resultados (Oculta al inicio) -->
+    <section id="result-card" class="card hidden">
+      <div class="result-header">
+        <div class="result-icon" id="result-icon">🎉</div>
+        <h2 class="card-title">Resultado de la Evaluación</h2>
+        <p id="result-subtitle">Has completado el examen exitosamente.</p>
+      </div>
+
+      <div class="score-card">
+        <span class="score-number" id="final-score">0 / 10</span>
+        <span class="score-label" id="score-percentage">0% de aciertos</span>
+      </div>
+
+      <div class="review-section">
+        <h3>Diagnóstico Académico</h3>
+        <div id="review-list">
+          <!-- Detalle de respuestas generado con JS -->
+        </div>
+      </div>
+
+      <button id="restart-btn" class="btn btn-primary btn-block" style="margin-top: 20px;">Intentar Nuevamente</button>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
